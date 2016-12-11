@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description">
+    <meta name="author">
+    <title>
+        allBusiness
+    </title><!-- Bootstrap core CSS -->
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+    <!-- Custom styles for this template -->
+    <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <script src="https://www.gstatic.com/firebasejs/3.6.3/firebase.js"></script>
+    <script>
+        // Initialize Firebase
+        var config = {
+            apiKey: "AIzaSyCgLaJuJR1aDv3G5J7NitXLrxLx8c0yR5s",
+            authDomain: "allbusiness-3d893.firebaseapp.com",
+            databaseURL: "https://allbusiness-3d893.firebaseio.com",
+            storageBucket: "allbusiness-3d893.appspot.com",
+            messagingSenderId: "209250414142"
+        };
+        firebase.initializeApp(config);
+    </script>
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+    <script>
+
+        firebase.auth().onAuthStateChanged(function (user) {
+            if (user) {
+                $("#usernamenav").text(user.email);
+            } else {
+                $("#usernamenav").text("No user");
+            }
+        });
+
+
+        //        var ref = firebase.database().ref();
+        $(document).ready(function () {
+            $("#logout-btn").on('click', function () {
+                firebase.auth().signOut().then(function () {
+                    window.location = "index.html";
+                }, function (error) {
+                    alert(error);
+                });
+            });
+        })
+
+//        $(document).ready(function(){
+//            showRegularModal("Client Reminder", "")
+//        });
+//
+//        function showRegularModal(header, content, footer, isReminder) {
+//
+//
+//
+//            $(".modal-header").html("<h3>" + header + "</h3>")
+//            $(".modal-content").html(content);
+//            if(isReminder){
+//                $("#modal-action").html(footer);
+//            }
+//
+//            var modal = $("#myModal");
+//
+//
+//        }
+
+    </script>
+
+    <style>
+        body {
+            background-color: whitesmoke;
+        }
+
+        input, select {
+            margin-top: 20px;
+        }
+
+        .table-condensed{
+            margin-bottom: 0px !important;
+        }
+        /*.list-group-item{*/
+            /*border: 10px !important;*/
+        /*}*/
+
+        #login-container {
+            margin-top: 100px;
+        }
+
+        .btn-primary {
+            margin-top: 10px;
+        }
+
+        .panel-group{
+            margin-top: 50px;
+        }
+
+        .panel-heading{
+            text-align: center;
+        }
+
+        .panel {
+            margin-top: 20px !important;
+            /*text-align: center;*/
+        }
+
+        .panel:hover {
+            box-shadow: 5px 0px 40px rgba(0, 0, 0, .2);
+        }
+
+        /*.panel-footer .btn:hover {*/
+        /*border: 1px solid cornflowerblue;*/
+        /*background-color: #fff !important;*/
+        /*color: cornflowerblue;*/
+        /*}*/
+
+        /*.panel-heading {*/
+        /*color: #fff !important;*/
+        /*background-color: cornflowerblue !important;*/
+        /*padding: 25px;*/
+        /*border-bottom: 1px solid transparent;*/
+        /*border-top-left-radius: 0px;*/
+        /*border-top-right-radius: 0px;*/
+        /*border-bottom-left-radius: 0px;*/
+        /*border-bottom-right-radius: 0px;*/
+        /*}*/
+
+        /*.panel-footer {*/
+        /*background-color: white !important;*/
+        /*}*/
+
+        /*.panel-footer h3 {*/
+        /*font-size: 32px;*/
+        /*}*/
+
+        /*.panel-footer h4 {*/
+        /*color: #aaa;*/
+        /*font-size: 14px;*/
+        /*}*/
+
+        .active {
+            background-color: white;
+            color: black;
+        }
+    </style>
+
+</head>
+<body>
+<!-- Modal -->
+<div id="myModal" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Modal Header</h4>
+            </div>
+            <div class="modal-body">
+                <ul class="list-group">
+                    <li class="list-group-item" id="modal-client">Client: Moshe</li>
+                    <li class="list-group-item" id="modal-subject">Subject: Haircut</li>
+                    <li class="list-group-item" id="modal-action"></li>
+                </ul>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<nav class="navbar navbar-inverse" role="navigation">
+    <div class="navbar-header">
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+            <span class="sr-only">Toggle navigation</span> <span class="icon-bar"></span> <span
+                class="icon-bar"></span>
+            <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href>- Haircutter -</a>
+    </div>
+    <div class="collapse navbar-collapse">
+        <ul class="nav navbar-nav pull-right">
+            <li>
+                <a id="usernamenav">Logout</a>
+            </li>
+            <li>
+                <a id="logout-btn" href="javascript:void(0);">Logout</a>
+            </li>
+        </ul>
+    </div><!--/.nav-collapse -->
+</nav>
+<div id="sub-menu" class="container-fluid">
+    <div class="row">
+        <div class="col-md-12">
+            <ul class="nav nav-tabs nav-justified">
+                <li class="active"><a href="#">Notifications</a></li>
+                <li><a href="#">Users</a></li>
+                <li><a href="#">Calender</a></li>
+                <li><a href="#">Business settings</a></li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-4 col-md-offset-4">
+            <div class="panel-group">
+
+                <div class="panel panel-primary">
+                    <div class="panel-heading">New User</div>
+                    <div class="panel-body">Moshe has joined your business</div>
+                </div>
+
+                <div class="panel panel-success">
+                    <div class="panel-heading">Appointment</div>
+                    <div class="panel-body">
+                        <table class="table table-condensed">
+                            <thead>
+                            <tr>
+                                <th>Client</th>
+                                <th>When</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr>
+                                <td>Yossi</td>
+                                <td>In 5 minutes</td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <div class="panel panel-danger">
+                    <div class="panel-heading">Reminder for client</div>
+                    <div class="panel-body">
+                        <table class="table table-condensed">
+                            <thead>
+                            <tr>
+                                <th>Client</th>
+                                <th>Subject</th>
+                                <th>When</th>
+                                <th>Action</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr>
+                                <td>Moshe</td>
+                                <td>Haircut</td>
+                                <td>31/1/16</td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>

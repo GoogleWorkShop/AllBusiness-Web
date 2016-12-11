@@ -1,0 +1,7 @@
+{
+  "name": "allBusiness",
+  "short_name": "allBusiness",
+  "start_url": "/index.html",
+  "display": "standalone",
+  "orientation": "portrait"
+}
